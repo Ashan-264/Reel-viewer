@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import Mux from "@mux/mux-node";
 
-const mux = new Mux(process.env.MUX_TOKEN_ID!, process.env.MUX_TOKEN_SECRET!);
+const mux = new Mux({
+  tokenId: process.env.MUX_TOKEN_ID!,
+  tokenSecret: process.env.MUX_TOKEN_SECRET!,
+});
 
 export async function GET(req: NextRequest) {
   try {
     console.log(req.body);
     const assets = await mux.video.assets.list();
-    const videos = assets.map((asset) => ({
+    const videos = assets.data.map((asset) => ({
       id: asset.id,
       playbackUrl: `https://stream.mux.com/${asset.playback_ids?.[0]?.id}.m3u8`,
     }));
