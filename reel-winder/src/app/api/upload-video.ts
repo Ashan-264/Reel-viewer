@@ -5,6 +5,7 @@ const mux = new Mux(process.env.MUX_TOKEN_ID!, process.env.MUX_TOKEN_SECRET!);
 
 export async function GET(req: NextRequest) {
   try {
+    console.log(req.body);
     const assets = await mux.video.assets.list();
     const videos = assets.map((asset) => ({
       id: asset.id,
