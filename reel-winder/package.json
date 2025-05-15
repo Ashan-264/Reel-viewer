@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "dashjs": "^4.4.1",
     "@clerk/nextjs": "^6.10.2",
     "@supabase/supabase-js": "^2.48.1",
     "next": "15.1.6",
